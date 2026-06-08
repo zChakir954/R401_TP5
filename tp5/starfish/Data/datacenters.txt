@@ -1,0 +1,17 @@
+1;USA;Washington;38.9072;-77.0369;washington@mail.com;DataCenter;dn=5427;Premier pays mondial
+2;Canada;Ottawa;45.4112;-75.6981;ottawa@mail.com;DataCenter;dn=337;Amerique du Nord
+3;France;Paris;48.8534;2.3486;paris@mail.com;DataCenter;dn=460;Premier pays europeen
+4;Belgique;Bruxelles;50.8503;4.3517;bruxelles@mail.com;DataCenter;dn=81;Europe occidentale
+5;Tcheque;Prague;50.0737;14.4185;prague@mail.com;DataCenter;dn=34;Europe centrale
+6;Grece;Athenes;37.9838;23.7275;athenes@mail.com;DataCenter;dn=14;Europe du Sud
+7;Islande;Reykjavik;64.1265;-21.8174;reykjavik@mail.com;DataCenter;dn=6;Energie renouvelable
+8;Azerbaidjan;Bakou;40.3777;49.8920;bakou@mail.com;DataCenter;dn=1;Caucase
+9;Kenya;Nairobi;-1.2921;36.8219;nairobi@mail.com;DataCenter;dn=18;Hub africain
+10;Ethiopie;Addis-Abeba;9.0211;38.7477;addisabeba@mail.com;DataCenter;dn=5;Afrique orientale
+11;Japon;Tokyo;35.6762;139.6503;tokyo@mail.com;DataCenter;dn=222;Premier pays asiatique
+12;Thailande;Bangkok;13.7563;100.5018;bangkok@mail.com;DataCenter;dn=42;Asie du Sud-Est
+13;Myanmar;Naypyidaw;19.7633;96.0785;naypyidaw@mail.com;DataCenter;dn=6;Asie du Sud-Est
+14;Laos;Vientiane;17.9667;102.6000;vientiane@mail.com;DataCenter;dn=1;Asie du Sud-Est
+15;Argentine;Buenos Aires;-34.6037;-58.3816;buenosaires@mail.com;DataCenter;dn=29;Amerique du Sud
+16;Honduras;Tegucigalpa;14.0818;-87.2068;tegucigalpa@mail.com;DataCenter;dn=7;Amerique centrale
+17;Bahamas;Nassau;25.0600;-77.3450;nassau@mail.com;DataCenter;dn=3;Caraibes

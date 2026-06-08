@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1">
+    <title>Accueil</title>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map {
+          height: 600px;
+          border: 2px blue solid;
+          background-color: green;
+        }
+        .dc-label {
+          background: transparent;
+          border: none;
+          box-shadow: none;
+          font-weight: bold;
+          font-size: 11px;
+          color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>L'echo des BD ...</h1>
+      <hr>
+      <article>
+        <h2>Où chercher ...</h2>
+        <form th:action="@{/search}" method="post">
+          <input type="text" name="query" placeholder="Trouver un lieu" required>
+          <input type="submit" value="Search">
+        </form>
+        <p th:if="${message != null and !message.isEmpty()}" 
+   style="color:red;" th:text="${message}"></p>
+        <div id="map" style="height: 400px;"></div>
+      </article>
+    </div>
+
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      
+      // On attend que tout le HTML soit chargé avant de lancer Leaflet
+      document.addEventListener("DOMContentLoaded", function() {
+        
+        // --- 1. INITIALISATION DE LA CARTE ---
+        var map = L.map('map').setView([20, 10], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    
+        // --- 2. MARQUEUR PAR DÉFAUT (Sorbonne) ---
+        L.marker([48.9561507, 2.341262599]).addTo(map)
+            .bindPopup('Sorbonne Paris Nord')
+            .openPopup();
+    
+        // --- 3. RÉCUPÉRATION ET TRAITEMENT DES DATA CENTERS ---
+        fetch('/datacenters.txt')
+          .then(contenu => {
+            if (!contenu.ok) throw new Error('Erreur accès fichier ' + contenu.status);
+            return contenu.text();
+          })
+          .then(data => {
+            var lignes = data.trim().split('\n');
+            
+            lignes.forEach(function(ligne) {
+              if (!ligne.trim()) return;
+              
+              var champs = ligne.split(';');
+              
+              // Sécurité : on ignore les lignes manifestement trop courtes ou vides
+              if (champs.length < 7) return; 
+    
+              var pays    = champs[1];
+              var ville   = champs[2];
+              var dcLat   = parseFloat(champs[3]);
+              var dcLon   = parseFloat(champs[4]);
+              
+              var email   = '';
+              var type    = '';
+              var nbDC    = 0;
+              var comment = '';
+    
+              // L'intelligence du script : s'adapter dynamiquement à la longueur de la ligne
+              if (champs.length >= 9) {
+                  // Format LONG (ex: Honduras)
+                  email   = champs[5];
+                  type    = champs[6];
+                  nbDC    = parseInt(champs[7].split('=')[1]) || 0;
+                  comment = champs[8] || '';
+              } else {
+                  // Format COURT (ex: USA, France)
+                  nbDC    = parseInt(champs[5].split('=')[1]) || 0;
+                  comment = champs[6] || '';
+              }
+    
+              // Sécurité vitale : si les coordonnées sont invalides, on ne dessine rien
+              if (isNaN(dcLat) || isNaN(dcLon)) return;
+    
+              // Construction sur-mesure de la fenêtre contextuelle (Popup)
+              var popupHTML = '<b>' + pays + ' — ' + ville + '</b><br>';
+              if (type !== '') popupHTML += 'Type : ' + type + '<br>';
+              popupHTML += 'Data Centers : <b>' + nbDC + '</b><br>';
+              if (email !== '') popupHTML += '<a href="mailto:' + email + '">' + email + '</a><br>';
+              popupHTML += comment;
+    
+              // --- 4. DESSIN DU CERCLE ---
+              L.circle([dcLat, dcLon], {
+                color: 'steelblue',
+                fillColor: '#4a90d9',
+                fillOpacity: 0.5,
+                radius: Math.sqrt(nbDC) * 8000
+              }).addTo(map)
+                .bindPopup(popupHTML)
+                .bindTooltip(String(nbDC), {
+                  permanent: true,
+                  direction: 'center',
+                  className: 'dc-label'
+                });
+            });
+          })
+          .catch(err => console.error('Erreur données :', err));
+    
+        // --- 5. POSITION DE L'UTILISATEUR (Thymeleaf) ---
+        // Utilisation de commentaires autour des variables pour ne pas casser la coloration syntaxique
+        var userLat = /*[[${latitude}]]*/ null;
+        var userLon = /*[[${longitude}]]*/ null;
+        
+        if (userLat != null && userLon != null) {
+            map.setView([userLat, userLon], 10);
+            L.marker([userLat, userLon]).addTo(map).bindPopup('Votre position');
+        }
+        
+      });
+      
+      /*]]>*/
+    </script>
+  </body>
+</html>

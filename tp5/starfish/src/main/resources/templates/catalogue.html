@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Catalogue</title>
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/catalogue.css}"/>
+</head>
+<body>
+
+  <div th:if="${menu == 'selection'}">
+    <h1>Thymeleaf : Exemple 1</h1>
+    <hr>
+    <article>
+      <ul>
+        <li><a>catalogue</a> : instance de la classe Catalogue.</li>
+        <li><a>titre, auteur, categorie</a> : Attributs de catalogue</li>
+      </ul>
+      <div th:if="${catalogue != null}">
+        <span id="catalogue" class="texte" th:text="${catalogue}" name="catalogue"></span>
+        <div class="contenu">
+          <label>Titre : </label>
+          <span class="attribut texte" th:text="${catalogue.getTitre()}" name="titre"></span>
+        </div>
+        <div class="contenu">
+          <label>Auteur : </label>
+          <span class="attribut texte" th:text="${catalogue.getAuteur()}" name="auteur"></span>
+        </div>
+        <div class="contenu">
+          <label>Categorie : </label>
+          <span class="attribut texte" th:text="${catalogue.getCategorie()}" name="categorie"></span>
+        </div>
+      </div>
+    </article>
+    <hr>
+  </div>
+
+  <div th:if="${menu == 'catalogue'}">
+    <h1>Thymeleaf : Exemple 3</h1>
+    <hr>
+    <article>
+      <form method="get" action="/ajouter">
+        <div class="contenu">
+          <label>Titre : </label>
+          <input type="text" name="titre"/>
+        </div>
+        <div class="contenu">
+          <label>Auteur : </label>
+          <input type="text" name="auteur"/>
+        </div>
+        <div class="contenu">
+          <label>Categorie : </label>
+          <input type="text" name="categorie"/>
+        </div>
+        <input type="submit" value="Ajouter"/>
+      </form>
+    </article>
+    <hr>
+    <h1>Thymeleaf : Exemple 2</h1>
+    <hr>
+    <article>
+      <table>
+        <tr th:each="item : ${liste}">
+          <td th:text="${item.getTitre()}">titre</td>
+          <td th:text="${item.getAuteur()}">auteur</td>
+          <td th:text="${item.getCategorie()}">categorie</td>
+        </tr>
+      </table>
+    </article>
+    <hr>
+  </div>
+
+</body>
+</html>

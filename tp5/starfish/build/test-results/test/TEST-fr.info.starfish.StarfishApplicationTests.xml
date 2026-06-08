@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="fr.info.starfish.StarfishApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-06-08T15:30:43.921Z" hostname="r20206" time="1.277">
+  <properties/>
+  <testcase name="contextLoads()" classname="fr.info.starfish.StarfishApplicationTests" time="0.396"/>
+  <system-out><![CDATA[17:30:44.004 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [fr.info.starfish.StarfishApplicationTests]: StarfishApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:30:44.063 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration fr.info.starfish.StarfishApplication for test class fr.info.starfish.StarfishApplicationTests
+17:30:44.100 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [fr.info.starfish.StarfishApplicationTests]: StarfishApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:30:44.101 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration fr.info.starfish.StarfishApplication for test class fr.info.starfish.StarfishApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.6)
+
+2026-06-08T17:30:44.261+02:00  WARN 11130 --- [starfish] [    Test worker] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/student/905/12403275/.gradle/caches/modules-2/files-2.1/org.json/json/20210307/528c8df3757e8bcf151817b1d7b9b434f6aa08d5/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/home/student/905/12403275/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2026-06-08T17:30:44.266+02:00  INFO 11130 --- [starfish] [    Test worker] f.i.starfish.StarfishApplicationTests    : Starting StarfishApplicationTests using Java 21.0.10 with PID 11130 (started by 12403275 in /home/student/905/12403275/tp_archi/tp5/starfish)
+2026-06-08T17:30:44.266+02:00  INFO 11130 --- [starfish] [    Test worker] f.i.starfish.StarfishApplicationTests    : The following 1 profile is active: "dev"
+2026-06-08T17:30:44.638+02:00  INFO 11130 --- [starfish] [    Test worker] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-06-08T17:30:44.795+02:00  INFO 11130 --- [starfish] [    Test worker] f.i.starfish.StarfishApplicationTests    : Started StarfishApplicationTests in 0.665 seconds (process running for 1.279)
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/home/student/905/12403275/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.8/f09415827a71be7ed621c7bd02550678f28bc81c/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

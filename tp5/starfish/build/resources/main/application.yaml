@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: starfish
+  profiles:
+    active: dev
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+        - file:./Data/
+server:
+  port: 8090
